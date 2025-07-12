@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Seed Price - Ayna</title>
+  <link rel="icon" href="{% static 'AYNA NEW LOGO.png' %}" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("{% static 'seed/field-texture.jpg' %}"), linear-gradient(to right, #d7ffd9, #c8e6c9);
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #1b5e20;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .header {
+      background: rgba(27, 94, 32, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .header .logo img {
+      height: 60px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #a5d6a7;
+      color: #1b5e20;
+    }
+
+    .title-section {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+
+    .title-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1b5e20;
+      text-shadow: 1px 1px 4px #fff;
+    }
+
+    .seed-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: auto;
+      padding: 40px;
+    }
+
+    .seed-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .seed-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .seed-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .seed-content {
+      padding: 25px;
+    }
+
+    .seed-content h2 {
+      font-size: 22px;
+      color: #2e7d32;
+      margin-bottom: 10px;
+    }
+
+    .seed-content p {
+      margin: 5px 0;
+      color: #4e944f;
+    }
+
+    .seed-buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .seed-buttons a,
+    .seed-buttons button {
+      flex: 1;
+      padding: 10px 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .seed-buttons a {
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .seed-buttons a:hover {
+      background-color: #2e7d32;
+    }
+
+    .seed-buttons button {
+      background-color: #c8e6c9;
+      color: #1b5e20;
+    }
+
+    .seed-buttons button:hover {
+      background-color: #aed581;
+    }
+
+    footer {
+      background: #1b5e20;
+      padding: 30px;
+      color: #e8f5e9;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer h3 {
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    footer p {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .title-section h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <a href="{% url 'index' %}" class="logo"><img src="{% static 'AYNA NEW LOGO.png' %}" alt="AYNA Logo"></a>
+      <div class="nav-links">
+        <a href="{% url 'seed' %}">Seeds Info</a>
+        <a href="{% url 'seed_price' %}">Current Seeds Price</a>
+        <a href="{% url 'fertilizer' %}">Fertilizers</a>
+        <a href="{% url 'index' %}">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="title-section">
+    <h1>🌿 Latest Seed Prices for Farmers</h1>
+  </section>
+
+  <section class="seed-container">
+    {% for seed in seeds %}
+    <div class="seed-card">
+      <img src="{{ seed.image.url }}" alt="{{ seed.name }}">
+      <div class="seed-content">
+        <h2>{{ seed.name }}</h2>
+        <p><strong>Price:</strong> ₹{{ seed.price }} per kg</p>
+        <p><strong>Quantity:</strong> {{ seed.quantity }} kg</p>
+        <p>{{ seed.description|truncatewords:20 }}</p>
+        <div class="seed-buttons">
+          <a href="{{ seed.wikipedia_link }}" target="_blank">Read More</a>
+          
+        </div>
+        <div class="seed-buttons">
+          <a href="{% url 'add_to_cart' seed.id %}" class="btn-submit">Add to Cart</a>
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+  
+
+
+
+</body>
+<footer>
+  <h3>Developed By Team Ayna</h3>
+  <p>© 2024 AYNA - ALL YOU NEED FOR AGRONOMY</p>
+</footer>
+
+</html>

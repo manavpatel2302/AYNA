@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order | AYNA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url("{% static 'bg.png' %}"), linear-gradient(to right, #d7ffd9, #c8e6c9);
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #1b5e20;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .glass-card {
+            backdrop-filter: blur(16px) saturate(150%);
+            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: #388e3c;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="{% url 'index' %}" class="logo"><img src="{% static 'AYNA NEW LOGO.png' %}" alt="AYNA Logo"></a>
+    <div class="nav-links">
+        <a href="{% url 'seed' %}">Seeds Info</a>
+        <a href="{% url 'seed_price' %}">Current Seeds Price</a>
+        <a href="{% url 'fertilizer' %}">Fertilizers</a>
+        <a href="{% url 'index' %}">Home</a>
+    </div>
+</header>
+
+<div class="max-w-4xl mx-auto p-6 mt-6">
+    <div class="glass-card p-10 max-w-lg w-full text-center mt-6">
+        <h1 class="text-3xl font-bold text-green-800 mb-4">Complete Your Order</h1>
+        <p class="text-lg mb-6">Please enter your details and confirm your payment of <strong>₹{{ amount|floatformat:2 }}</strong> to complete your seed purchase. 🌱</p>
+
+        <form method="POST" action="{% url 'payment-confirm' %}">
+            {% csrf_token %}
+            <div class="space-y-4 mb-6">
+                <div class="flex flex-col">
+                    <label for="owner_name" class="text-lg font-medium text-green-800">Owner's Name</label>
+                    <input type="text" id="owner_name" name="owner_name" class="border px-4 py-2 rounded-lg" required>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="address" class="text-lg font-medium text-green-800">Address</label>
+                    <textarea id="address" name="address" rows="3" class="border px-4 py-2 rounded-lg" required></textarea>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="phone" class="text-lg font-medium text-green-800">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="border px-4 py-2 rounded-lg" required pattern="[0-9]{10}">
+                </div>
+            </div>
+
+            <!-- Hidden Field for the Amount -->
+            <input type="hidden" name="amount" value="{{ amount }}">
+
+            <!-- Submit Button to Call Razorpay -->
+            <button type="submit" class="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-xl text-lg shadow-xl transition-all">
+                Pay Now
+            </button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 AYNA - All You Need for Agronomy</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Solar Panels in Agronomy</title>
+  <link rel="icon" href="{% static 'AYNA NEW LOGO.png' %}" type="image/png" sizes="16x16">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .header {
+  background: rgba(0, 51, 34, 0.9);
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.header img {
+  height: 70px;
+}
+
+.header-right {
+  display: flex;
+  gap: 25px;
+}
+
+.header-right a {
+  color: #a5d6a7;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.header-right a:hover {
+  background-color: #a5d6a7;
+  color: #003300;
+}
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("{% static 'bg.png' %}"), linear-gradient(to right, #d7ffd9, #c8e6c9);
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #1b5e20;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .header {
+      background: rgba(27, 94, 32, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .header .logo img {
+      height: 10px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #a5d6a7;
+      color: #1b5e20;
+    }
+
+    main h1 {
+      text-align: center;
+      font-size: 60px;
+      margin: 40px 0;
+      color: #000000;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 1s ease-out;
+    }
+
+    .col-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .col {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 25px;
+      width: 45%;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      color: #000000;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .col:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 255, 128, 0.3);
+    }
+
+    .col h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: #000000;
+    }
+
+    .col p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .col img {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    a {
+      color: #ff0000;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: #00ffcc;
+      color: #003300;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(43, 93, 48, 0.8);
+      color: white;
+      padding: 30px 0;
+      font-size: 16px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .col {
+        width: 100%;
+      }
+
+      main h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <a href="{% url 'index' %}">
+        <img src="{% static 'AYNA NEW LOGO.png' %}" alt="AYNA Logo">
+      </a>
+      <div class="header-right">
+        <a href="{% url 'solarpanel' %}">Solar Panel</a>
+        <a href="{% url 'tech' %}">Modern Day Tech</a>
+        <a href="{% url 'index' %}">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1>Solar Panels</h1>
+
+    <div class="col-container">
+      {% for item in content_list %}
+        <div class="col">
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.content|linebreaks }}</p>
+          {% if item.link %}
+            <p><a href="{{ item.link }}" target="_blank">Read More</a></p>
+          {% endif %}
+          {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <footer>
+      <h2>Developed By Team Ayna</h2>
+      <p>© 2024 AYNA - ALL YOU NEED FOR AGRONOMY. All Rights Reserved | Design by Team Ayna</p>
+    </footer>
+  </main>
+</body>
+</html>

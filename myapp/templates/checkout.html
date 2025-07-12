@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - AYNA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("{% static 'bg.png' %}"), linear-gradient(to right, #d7ffd9, #c8e6c9);
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #1b5e20;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .header {
+      background: rgba(27, 94, 32, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .header .logo img {
+      height: 120px;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      background: #a5d6a7;
+      color: #1b5e20;
+    }
+
+    table {
+      width: 92%;
+      margin: 50px auto;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    table th, table td {
+      padding: 25px;
+      text-align: center;
+      color: #000000;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid rgba(158, 0, 0, 0.4);
+    }
+
+    table th {
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      font-weight: bold;
+    }
+
+    table td img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    button[type="submit"],
+    .btn-green {
+      padding: 10px 25px;
+      border: none;
+      background: linear-gradient(145deg, #81c784, #66bb6a);
+      color: white;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    button[type="submit"]:hover,
+    .btn-green:hover {
+      background: linear-gradient(145deg, #66bb6a, #388e3c);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 100, 0, 0.3);
+    }
+
+    .total-price {
+      text-align: right;
+      margin: 30px 5% 60px 0;
+      font-size: 28px;
+      font-weight: bold;
+      color: #000000;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 15px 35px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(43, 93, 48, 0.8);
+      color: white;
+      padding: 30px 0;
+      font-size: 16px;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    footer p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glass-bg">
+    <!-- HEADER -->
+    <header class="header">
+      <a href="{% url 'index' %}" class="logo"><img src="{% static 'AYNA NEW LOGO.png' %}" alt="AYNA Logo"></a>
+      <div class="nav-links">
+        <a href="{% url 'seed' %}">Seeds Info</a>
+        <a href="{% url 'seed_price' %}">Current Seeds Price</a>
+        <a href="{% url 'fertilizer' %}">Fertilizers</a>
+        <a href="{% url 'index' %}">Home</a>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="max-w-6xl mx-auto px-6 pt-10 pb-20">
+      <h1 class="text-4xl font-bold text-green-900 mb-8 text-center tracking-wide">🌾 Checkout</h1>
+
+      <div class="glass-card p-8">
+        <table>
+          <thead>
+            <tr>
+              <th>Seed</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart_items %}
+            <tr>
+              <td class="flex items-center space-x-4 py-3">
+                <img src="{{ item.seed.image.url }}" alt="{{ item.seed.name }}">
+                <span>{{ item.seed.name }}</span>
+              </td>
+              <td>{{ item.quantity }}</td>
+              <td>₹{{ item.seed.price }}</td>
+              <td>₹{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <!-- USER DETAILS -->
+        <form method="POST" class="mb-10">
+          {% csrf_token %}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div>
+              <label class="block mb-2 font-semibold text-green-800" for="full_name">Full Name</label>
+              <input type="text" id="full_name" name="full_name" placeholder="John Doe" required>
+            </div>
+            <div>
+              <label class="block mb-2 font-semibold text-green-800" for="contact_number">Contact Number</label>
+              <input type="text" id="contact_number" name="contact_number" placeholder="9876543210" required>
+            </div>
+            <div>
+              <label class="block mb-2 font-semibold text-green-800" for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="123 Green Valley, Gujarat" required>
+            </div>
+          </div>
+        </form>
+
+        <!-- COUPON FORM -->
+        <form method="POST" class="mb-6">
+          {% csrf_token %}
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <input type="text" name="coupon_code" placeholder="Enter Coupon Code">
+            <button type="submit">Apply Coupon</button>
+          </div>
+        </form>
+
+        <!-- MODAL -->
+        {% if applied_coupon %}
+        <div id="modal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div class="bg-white p-8 rounded-3xl shadow-2xl text-center w-96">
+            <h2 class="text-3xl font-semibold text-green-700 mb-4">✅ Coupon Applied!</h2>
+            <p class="text-lg">You saved ₹{{ discount_amount }} using "<strong>{{ applied_coupon.coupon_name }}</strong>"</p>
+            <button onclick="document.getElementById('modal').style.display='none'" class="btn-green mt-6">Close</button>
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- TOTAL -->
+        <div class="total-price">
+          <p>Subtotal: ₹{{ subtotal }}</p>
+          {% if discount_amount > 0 %}
+          <p class="text-green-600">Discount: -₹{{ discount_amount }}</p>
+          {% endif %}
+          <p class="text-2xl font-bold mt-2 text-green-900">Total: ₹{{ total }}</p>
+        </div>
+
+<!-- Razorpay Payment Button -->
+<div class="text-center mt-8">
+  <button id="rzp-button1" class="btn-green text-xl px-10 py-3">💳 Pay Now</button>
+</div>
+
+<!-- Razorpay Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ api_key }}",  // Razorpay Key from context
+        "amount": "{{ total|floatformat:0 }}00",  // amount in paise
+        "currency": "INR",
+        "name": "AYNA Agro",
+        "description": "Seed Purchase",
+        "order_id": "{{ order_id }}",  // Razorpay order ID from view context
+        "handler": function (response){
+            // On successful payment
+            window.location.href = "{% url 'payment_success' %}";
+        },
+        "prefill": {
+            "name": "{{ request.user.get_full_name }}",
+            "email": "{{ request.user.email }}",
+            "contact": "{{ request.user.profile.phone|default_if_none:'' }}"
+        },
+        "theme": {
+            "color": "#66bb6a"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+</script>
+
+</div>
+</div>
+</body>
+<!-- FOOTER -->
+<footer>
+  <p>🌿 © 2024 AYNA - ALL YOU NEED FOR AGRONOMY 🌿</p>
+</footer>
+</html>

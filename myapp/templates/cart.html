@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Seed Price - Ayna</title>
+  <link rel="icon" href="{% static 'AYNA NEW LOGO.png' %}" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("../static/bg.png"), linear-gradient(to right, #d7ffd9, #c8e6c9);
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-attachment: fixed;
+      color: #1b5e20;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .header {
+      background: rgba(27, 94, 32, 0.95);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    
+    .header .logo img {
+      height: 120px;
+    }
+    
+    .nav-links a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      background: #a5d6a7;
+      color: #1b5e20;
+    }
+    
+      
+    
+      
+        table {
+          width: 92%;
+          margin: 50px auto;
+          border-collapse: collapse;
+          background: rgba(255, 255, 255, 0.2); /* Slightly transparent white for glass effect */
+          backdrop-filter: blur(15px); /* Glass-like blur effect */
+          border-radius: 25px;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+          animation: fadeIn 1s ease-in-out;
+        }
+      
+        table th, table td {
+          padding: 25px;
+          text-align: center;
+          color: #000000; /* Green text */
+          font-size: 18px;
+          letter-spacing: 0.5px;
+          border-bottom: 1px solid rgba(158, 0, 0, 0.4);
+        }
+      
+        table th {
+          background: rgba(0, 0, 0, 0.8); /* Slightly dark green */
+          color: white;
+          font-weight: bold;
+        }
+      
+        table td img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 12px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+      
+        input[type="number"] {
+          width: 80px;
+          padding: 12px;
+          border: none;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.6); /* Transparent white */
+          box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.1);
+          font-size: 16px;
+          transition: transform 0.3s ease;
+        }
+      
+        input[type="number"]:focus {
+          transform: scale(1.05);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      
+        button[type="submit"] {
+          padding: 10px 25px;
+          border: none;
+          background: linear-gradient(145deg, #81c784, #66bb6a);
+          color: white;
+          font-weight: bold;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+      
+        button[type="submit"]:hover {
+          background: linear-gradient(145deg, #66bb6a, #388e3c);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 30px rgba(0, 100, 0, 0.3);
+        }
+      
+        .cancel-btn {
+          background: linear-gradient(145deg, #e53935, #c62828);
+        }
+      
+        .cancel-btn:hover {
+          background: linear-gradient(145deg, #b71c1c, #7f0000);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 16px rgba(255, 0, 0, 0.3);
+        }
+      
+        .total-price {
+          text-align: right;
+          margin: 30px 5% 60px 0;
+          font-size: 28px;
+          font-weight: bold;
+          color: #000000;
+          background: rgba(255, 255, 255, 0.3); /* Light frosted white background */
+          padding: 15px 35px;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+          text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+      
+        footer {
+          text-align: center;
+          background: rgba(43, 93, 48, 0.8);
+          color: white;
+          padding: 30px 0;
+          font-size: 16px;
+          border-top-left-radius: 40px;
+          border-top-right-radius: 40px;
+          box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+          backdrop-filter: blur(12px);
+        }
+      
+        footer h3 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+      
+        footer p {
+          font-size: 14px;
+          opacity: 0.8;
+        }
+      
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .price {
+          text-align: right;
+          margin: 30px 5% 60px 0;
+          font-size: 40px;
+          font-weight: bold;
+          color: #000000;
+          background: rgba(255, 255, 255, 0.3); /* Light frosted white background */
+          padding: 15px 35px;
+          border-radius: 15px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+          text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <a href="{% url 'index' %}" class="logo"><img src="{% static 'AYNA NEW LOGO.png' %}" alt="AYNA Logo"></a>
+      <div class="nav-links">
+        <a href="{% url 'seed' %}">Seeds Info</a>
+        <a href="{% url 'seed_price' %}">Current Seeds Price</a>
+        <a href="{% url 'fertilizer' %}">Fertilizers</a>
+        <a href="{% url 'index' %}">Home</a>
+      </div>
+    </div>
+  </header>
+
+  
+
+  
+
+  <div class="cart-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Seed Image</th>
+          <th>Seed Name</th>
+         
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cart_item in cart_items %}
+        <tr>
+          <td><img src="{{ cart_item.seed.image.url }}" alt="{{ cart_item.seed.name }}"></td>
+          <td>{{ cart_item.seed.name }}</td>
+          <td>
+            <form method="post" action="{% url 'update_quantity' cart_item.id %}">
+              {% csrf_token %}
+              <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1" required>
+              <button type="submit">Update</button>
+            </form>
+          </td>
+          <td>{{ cart_item.seed.price }}/-</td>
+          <td>{{ cart_item.total_price }}/-</td>
+          <td>
+            <form method="post" action="{% url 'remove_from_cart' cart_item.id %}">
+              {% csrf_token %}
+              <button type="submit" class="cancel-btn">Remove</button>
+            </form>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" style="text-align: center;">
+            <img src="../static/cart.png" alt="Empty Cart" style="width: 300px; height: 300px;">
+            <br>
+            <a href="{% url 'seed_price' %}" style="color: #ff0101; font-size: 18px; text-decoration: none; font-weight: 600;"><h1>Continue Shopping</h1></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      
+    </table>
+
+    <div class="total-price">
+      <p>Total Price: {{ total_price }}/-</p>
+    </div>
+  </div>
+  <div class="price">
+  <form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <button type="submit" class="checkout-btn"><h1>Proceed to Checkout</h1></button>
+  </form>
+</div>
+
+
+  <footer>
+    <h3>Developed By Team Ayna</h3>
+    <p>© 2024 AYNA - ALL YOU NEED FOR AGRONOMY</p>
+  </footer>
+</body>
+
+</html>
