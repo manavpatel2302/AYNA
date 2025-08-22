@@ -1,16 +1,174 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-
-<style type="text/css">
+  <style type="text/css">
     .header {
+      overflow: hidden;
+      background-color: black;
+      padding: 10px 30px;
+    }
+
+    .header a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    .header a.logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .header a.logo:hover {
+      background-color: black;
+    }
+
+    .header a:hover {
+      background-color: rgb(86, 246, 11);
+      color: black;
+    }
+
+    .header a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+    .subnav {
+      float: left;
+      overflow: hidden;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    .subnav .subnavbtn {
+      border: none;
+      outline: none;
+      color: white;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    .subnav-content {
+      display: none;
+      position: absolute;
+      background-color: black;
+      z-index: 1;
+    }
+
+    .subnav-content a {
+      float: left;
+      color: white;
+      text-decoration: none;
+    }
+
+    .subnav-content a:hover {
+      background-color: #06f01a;
+      color: black;
+    }
+
+    .subnav:hover .subnav-content {
+      display: block;
+    }
+  </style>
+
+  <head>
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8" />
+    <title>AYNA</title>
+    <!-- viewport meta -->
+    <meta name="AYNA" content="All You Need for Agronomy" />
+
+    <!-- styles -->
+    <!-- helpers -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}"
+    />
+    <!-- fontawesome css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}"
+    />
+    <!-- strock gap icons -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/Stroke-Gap-Icons-Webfont/style.css' %}"
+    />
+    <!-- revolution slider css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/revolution/css/settings.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/revolution/css/layers.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/revolution/css/navigation.css' %}"
+    />
+    <!-- flaticon css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/flaticon/flaticon.css' %}"
+    />
+    <!-- jQuery ui css -->
+    <link
+      href="{% static 'plugins/jquery-ui-1.11.4/jquery-ui.css' %}"
+      rel="stylesheet"
+    />
+    <!-- owl carousel css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/owl.carousel-2/assets/owl.carousel.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/owl.carousel-2/assets/owl.theme.default.min.css' %}"
+    />
+    <!-- animate css -->
+    <link rel="stylesheet" href="{% static 'plugins/animate.min.css' %}" />
+    <!-- fancybox -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/fancyapps-fancyBox/source/jquery.fancybox.css' %}"
+    />
+    <link
+      rel="icon"
+      href="{% static 'AYNA NEW LOGO.png' %}"
+      type="image/gif"
+      sizes="16x16"
+    />
+
+    <!-- master stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- responsive stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}" />
+  </head>
+
+  <body>
+    <style type="text/css">
+      .header {
         overflow: hidden;
         background-color: black;
         padding: 10px 30px;
-    }
-    
-    .header a {
+      }
+
+      .header a {
         float: left;
         color: white;
         text-align: center;
@@ -19,32 +177,32 @@
         font-size: 18px;
         line-height: 25px;
         border-radius: 4px;
-    }
-    
-    .header a.logo {
+      }
+
+      .header a.logo {
         font-size: 25px;
         font-weight: bold;
-    }
-    
-    .header a.logo:hover {
+      }
+
+      .header a.logo:hover {
         background-color: black;
-    }
-    
-    .header a:hover {
+      }
+
+      .header a:hover {
         background-color: rgb(86, 246, 11);
         color: black;
-    }
-    
-    .header a.active {
+      }
+
+      .header a.active {
         background-color: dodgerblue;
         color: white;
-    }
-    
-    .header-right {
+      }
+
+      .header-right {
         float: right;
-    }
-    
-    .subnav {
+      }
+
+      .subnav {
         float: left;
         overflow: hidden;
         padding: 12px;
@@ -52,441 +210,492 @@
         font-size: 18px;
         line-height: 25px;
         border-radius: 4px;
-    }
-    
-    .subnav .subnavbtn {
+      }
+
+      .subnav .subnavbtn {
         border: none;
         outline: none;
         color: white;
         background-color: inherit;
         font-family: inherit;
         margin: 0;
-    }
-    
-    .subnav-content {
+        border-radius: 4px;
+      }
+
+      .subnavbtn:hover {
+        background-color: rgb(86, 246, 11);
+        color: black;
+      }
+
+      .subnav-content {
         display: none;
         position: absolute;
         background-color: black;
         z-index: 1;
-    }
-    
-    .subnav-content a {
+      }
+
+      .subnav-content a {
         float: left;
         color: white;
         text-decoration: none;
-    }
-    
-    .subnav-content a:hover {
-        background-color: #06f01a;
+      }
+
+      .subnav-content a:hover {
+        background-color: rgb(6, 240, 26);
         color: black;
-    }
-    
-    .subnav:hover .subnav-content {
+      }
+
+      .subnav:hover .subnav-content {
         display: block;
-    }
-</style>
-
-<head>
-    <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="UTF-8">
-    <title>AYNA</title>
-    <!-- viewport meta -->
-    <meta name="AYNA" content="All You Need for Agronomy">
-
-    <!-- styles -->
-    <!-- helpers -->
-    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}">
-    <!-- fontawesome css -->
-    <link rel="stylesheet" href="{% static 'plugins/font-awesome/css/font-awesome.min.css' %}">
-    <!-- strock gap icons -->
-    <link rel="stylesheet" href="{% static 'plugins/Stroke-Gap-Icons-Webfont/style.css' %}">
-    <!-- revolution slider css -->
-    <link rel="stylesheet" href="{% static 'plugins/revolution/css/settings.css' %}">
-    <link rel="stylesheet" href="{% static 'plugins/revolution/css/layers.css' %}">
-    <link rel="stylesheet" href="{% static 'plugins/revolution/css/navigation.css' %}">
-    <!-- flaticon css -->
-    <link rel="stylesheet" href="{% static 'plugins/flaticon/flaticon.css' %}">
-    <!-- jQuery ui css -->
-    <link href="{% static 'plugins/jquery-ui-1.11.4/jquery-ui.css' %}" rel="stylesheet">
-    <!-- owl carousel css -->
-    <link rel="stylesheet" href="{% static 'plugins/owl.carousel-2/assets/owl.carousel.css' %}">
-    <link rel="stylesheet" href="{% static 'plugins/owl.carousel-2/assets/owl.theme.default.min.css' %}">
-    <!-- animate css -->
-    <link rel="stylesheet" href="{% static 'plugins/animate.min.css' %}">
-    <!-- fancybox -->
-    <link rel="stylesheet" href="{% static 'plugins/fancyapps-fancyBox/source/jquery.fancybox.css' %}">
-    <link rel="icon" href="{% static 'AYNA NEW LOGO.png' %}" type="image/gif" sizes="16x16">
-
-
-    <!-- master stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- responsive stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-
-
-
-</head>
-
-<body>
-
-    <style type="text/css">
-        .header {
-            overflow: hidden;
-            background-color: black;
-            padding: 10px 30px;
-        }
-        
-        .header a {
-            float: left;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 25px;
-            border-radius: 4px;
-        }
-        
-        .header a.logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
-        
-        .header a.logo:hover {
-            background-color: black;
-        }
-        
-        .header a:hover {
-            background-color: rgb(86, 246, 11);
-            color: black;
-        }
-        
-        .header a.active {
-            background-color: dodgerblue;
-            color: white;
-        }
-        
-        .header-right {
-            float: right;
-        }
-        
-        .subnav {
-            float: left;
-            overflow: hidden;
-            padding: 12px;
-            text-decoration: none;
-            font-size: 18px;
-            line-height: 25px;
-            border-radius: 4px;
-        }
-        
-        .subnav .subnavbtn {
-            border: none;
-            outline: none;
-            color: white;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-            border-radius: 4px;
-        }
-        
-        .subnavbtn:hover {
-            background-color: rgb(86, 246, 11);
-            color: black;
-        }
-        
-        .subnav-content {
-            display: none;
-            position: absolute;
-            background-color: black;
-            z-index: 1;
-        }
-        
-        .subnav-content a {
-            float: left;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .subnav-content a:hover {
-            background-color: rgb(6, 240, 26);
-            color: black;
-        }
-        
-        .subnav:hover .subnav-content {
-            display: block;
-        }
+      }
     </style>
-
 
     <!-- Start mainmenu -->
     <header>
-        <div class="header">
-            <a href="#default" class="logo"><img style="height: 80px;" src="{% static 'AYNA NEW LOGO.png' %}" alt="logo"></a>
-            <br>
-            <div class="header-right">
-                <div class="subnav">
-                    <button class="subnavbtn">Weather<i class="#"></i></button>
-                    <div class="subnav-content">
-                        <!-- <li><a href="weatherwebsite/index.html">Search</a></li> -->
-                        <li><a href="{% url 'weather' %}">Your Current Location</a></li>
-                    </div>
-                </div>
-                <a href="{% url 'govts' %}">Goverment Schemes</a>
-                <div class="subnav">
-                    <button class="subnavbtn">Crop<i class="#"></i></button>
-                    <div class="subnav-content">
-                        <li><a href="{% url 'seed' %}">Info on Seeds</a></li>
-                        <li><a href="{% url 'seed_price' %}">Current Seeds Price</a></li>
-                        <li><a href="{% url 'fertilizer' %}">Fertilizer</a></li>
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button class="subnavbtn">Tech Knowledge<i class="#"></i></button>
-                    <div class="subnav-content">
-                        <li><a href="{% url 'solarpanel' %}">Solar Panel</a></li>
-                        <li><a href="{% url 'tech' %}">Modern Day Tech</a></li>
-                    </div>
-                </div>
-                <a href="{% url 'feedback' %}">Feedback</a>
-                <div class="subnav">
-                    <button class="subnavbtn">Account<i class="#"></i></button>
-                    <div class="subnav-content">
-                        <li><a href="{% url 'register' %}">Register</a></li>
-                        <li><a href="{% url 'login' %}">log-in</a></li>
-                        <li><a href="{% url 'logout' %}">log-out</a></li>
-                    </div>
-                </div>
-                <div class="subnav">
-                    <button class="subnavbtn">Pages<i class="#"></i></button>
-                    <div class="subnav-content">
-                        <li><a href="{% url 'cart_view' %}">Cart</a></li>
-                        <li><a href="{% url 'checkout' %}">Checkout</a></li>
-                        
-                    </div>
-                </div>
+      <div class="header">
+        <a href="#default" class="logo"
+          ><img
+            style="height: 80px"
+            src="{% static 'AYNA NEW LOGO.png' %}"
+            alt="logo"
+        /></a>
+        <br />
+        <div class="header-right">
+          <div class="subnav">
+            <button class="subnavbtn">Weather<i class="#"></i></button>
+            <div class="subnav-content">
+              <!-- <li><a href="weatherwebsite/index.html">Search</a></li> -->
+              <li><a href="{% url 'weather' %}">Your Current Location</a></li>
             </div>
-
+          </div>
+          <a href="{% url 'govts' %}">Goverment Schemes</a>
+          <div class="subnav">
+            <button class="subnavbtn">Crop<i class="#"></i></button>
+            <div class="subnav-content">
+              <li><a href="{% url 'seed' %}">Info on Seeds</a></li>
+              <li><a href="{% url 'seed_price' %}">Current Seeds Price</a></li>
+              <li><a href="{% url 'fertilizer' %}">Fertilizer</a></li>
+            </div>
+          </div>
+          <div class="subnav">
+            <button class="subnavbtn">Tech Knowledge<i class="#"></i></button>
+            <div class="subnav-content">
+              <li><a href="{% url 'solarpanel' %}">Solar Panel</a></li>
+              <li><a href="{% url 'tech' %}">Modern Day Tech</a></li>
+            </div>
+          </div>
+          <a href="{% url 'feedback' %}">Feedback</a>
+          <div class="subnav">
+            <button class="subnavbtn">Account<i class="#"></i></button>
+            <div class="subnav-content">
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">log-in</a></li>
+              <li><a href="{% url 'logout' %}">log-out</a></li>
+            </div>
+          </div>
+          <div class="subnav">
+            <button class="subnavbtn">Pages<i class="#"></i></button>
+            <div class="subnav-content">
+              <li><a href="{% url 'cart_view' %}">Cart</a></li>
+              <li><a href="{% url 'checkout' %}">Checkout</a></li>
+            </div>
+          </div>
         </div>
-
+      </div>
     </header>
     <!-- End mainmenu -->
 
-
     <section class="rev_slider_wrapper thm-banner-wrapper">
-        <div id="slider1" class="rev_slider" data-version="5.0">
-            <ul>
+      <div id="slider1" class="rev_slider" data-version="5.0">
+        <ul>
+          <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
+            <img
+              src="{% static 'pexels-noel-mcshane-1036148.jpg' %}"
+              alt="Crop Background"
+            />
+            <div
+              class="tp-caption sfb tp-resizeme caption-h1"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="188"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="500"
+            >
+              AYNA
+            </div>
+            <div
+              class="tp-caption sfb tp-resizeme caption-p"
+              data-x="left"
+              data-hoffset="33"
+              data-y="top"
+              data-voffset="315"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1000"
+            >
+              "AYNA - <strong>You Need for Agronomy</strong>."
+            </div>
+          </li>
 
-                <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
-                    <img src="{% static 'pexels-noel-mcshane-1036148.jpg' %}" alt="Crop Background">
-                    <div class="tp-caption sfb tp-resizeme caption-h1" data-x="left" data-hoffset="0" data-y="top" data-voffset="188" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="500">
-                        AYNA
-                    </div>
-                    <div class="tp-caption sfb tp-resizeme caption-p" data-x="left" data-hoffset="33" data-y="top" data-voffset="315" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1000">
-                        "AYNA - <strong>You Need for Agronomy</strong>."
-                    </div>
+          <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
+            <img src="{% static 'corn-field-9.jpg' %}" alt="Farms" />
+            <div
+              class="tp-caption sfb tp-resizeme caption-h1"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="248"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="500"
+            >
+              Our<br />
+              Vision
+            </div>
+            <div
+              class="tp-caption sfb tp-resizeme caption-p"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="375"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1000"
+            >
+              Is to create awareness related to Farming Technics and Technology
+              in Farmers community.
+            </div>
+            <div
+              class="tp-caption sfl tp-resizeme"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="500"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1500"
+            ></div>
+          </li>
+          <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
+            <img
+              src="{% static 'pexels-stephanthem-753869.jpg' %}"
+              alt="crop"
+            />
+            <div
+              class="tp-caption sfb tp-resizeme caption-h1"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="248"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="500"
+            >
+              AYNA<br />VISION
+            </div>
+            <div
+              class="tp-caption sfb tp-resizeme caption-p"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="375"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1000"
+            >
+              Is to work for farmers problem and introduce them to various
+              policies and Technology related to farming.
+            </div>
+            <div
+              class="tp-caption sfl tp-resizeme"
+              data-x="left"
+              data-hoffset="0"
+              data-y="top"
+              data-voffset="500"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1500"
+            >
+              <!--<a href="about.html" class="thm-btn">About Us <i class="fa fa-arrow-right"></i></a>-->
+            </div>
+          </li>
 
-                </li>
-
-                <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
-                    <img src="{% static 'corn-field-9.jpg' %}" alt="Farms">
-                    <div class="tp-caption sfb tp-resizeme caption-h1" data-x="left" data-hoffset="0" data-y="top" data-voffset="248" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="500">
-                        Our<br> Vision
-                    </div>
-                    <div class="tp-caption sfb tp-resizeme caption-p" data-x="left" data-hoffset="0" data-y="top" data-voffset="375" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1000">
-                        Is to create awareness related to Farming Technics and Technology in Farmers community.
-                    </div>
-                    <div class="tp-caption sfl tp-resizeme" data-x="left" data-hoffset="0" data-y="top" data-voffset="500" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1500">
-                    </div>
-                </li>
-                <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
-                    <img src="{% static 'pexels-stephanthem-753869.jpg' %}" alt="crop">
-                    <div class="tp-caption sfb tp-resizeme caption-h1" data-x="left" data-hoffset="0" data-y="top" data-voffset="248" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="500">
-                        AYNA<br>VISION
-                    </div>
-                    <div class="tp-caption sfb tp-resizeme caption-p" data-x="left" data-hoffset="0" data-y="top" data-voffset="375" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1000">
-                        Is to work for farmers problem and introduce them to various policies and Technology related to farming.
-
-                    </div>
-                    <div class="tp-caption sfl tp-resizeme" data-x="left" data-hoffset="0" data-y="top" data-voffset="500" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1500">
-                        <!--<a href="about.html" class="thm-btn">About Us <i class="fa fa-arrow-right"></i></a>-->
-                    </div>
-                </li>
-
-                <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
-                    <img src="{% static 'pexels-pierre-sudre-9695-55766.jpg' %}" alt="farms">
-                    <div class="tp-caption sfb tp-resizeme caption-h1" data-x="left" data-hoffset="0" data-y="bottom" data-voffset="0" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="500">
-
-                    </div>
-                    <div class="tp-caption sfb tp-resizeme caption-h1" data-x="right" data-hoffset="0" data-y="bottom" data-voffset="0" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1700">
-
-                    </div>
-                    <div class="tp-caption sfb tp-resizeme caption-p" data-x="right" data-hoffset="50" data-y="top" data-voffset="275" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1100">
-                        "Farming looks mighty easy when your plow is a pencil,<br> and you're a thousand miles from the corn field." <br> - President Dwight D. Eisenhower </div>
-                    <div class="tp-caption sfl tp-resizeme" data-x="right" data-hoffset="460" data-y="top" data-voffset="360" data-whitespace="nowrap" data-transform_idle="o:1;" data-transform_in="o:0" data-transform_out="o:0" data-start="1500">
-                        <!--<a href="https://www.vitbhopal.ac.in/" class="thm-btn inverse">VIT Bhopal <i class="fa fa-arrow-right"></i></a>-->
-                    </div>
-                </li>
-            </ul>
-        </div>
+          <li data-transition="parallaxvertical" data-ease="SlowMo.ease">
+            <img
+              src="{% static 'pexels-pierre-sudre-9695-55766.jpg' %}"
+              alt="farms"
+            />
+            <div
+              class="tp-caption sfb tp-resizeme caption-h1"
+              data-x="left"
+              data-hoffset="0"
+              data-y="bottom"
+              data-voffset="0"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="500"
+            ></div>
+            <div
+              class="tp-caption sfb tp-resizeme caption-h1"
+              data-x="right"
+              data-hoffset="0"
+              data-y="bottom"
+              data-voffset="0"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1700"
+            ></div>
+            <div
+              class="tp-caption sfb tp-resizeme caption-p"
+              data-x="right"
+              data-hoffset="50"
+              data-y="top"
+              data-voffset="275"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1100"
+            >
+              "Farming looks mighty easy when your plow is a pencil,<br />
+              and you're a thousand miles from the corn field." <br />
+              - President Dwight D. Eisenhower
+            </div>
+            <div
+              class="tp-caption sfl tp-resizeme"
+              data-x="right"
+              data-hoffset="460"
+              data-y="top"
+              data-voffset="360"
+              data-whitespace="nowrap"
+              data-transform_idle="o:1;"
+              data-transform_in="o:0"
+              data-transform_out="o:0"
+              data-start="1500"
+            >
+              <!--<a href="https://www.vitbhopal.ac.in/" class="thm-btn inverse">VIT Bhopal <i class="fa fa-arrow-right"></i></a>-->
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section class="about-info-box sec-padding">
-        <div class="thm-container">
-            <div class="row">
-
-
-                <div class="col-lg-8 col-md-8">
-                    <div class="sec-title">
-                        <h2><span>What is AYNA</span></h2>
-                        <ul class="bulleted-list">
-                            <li><i class="fa fa-arrow-circle-right"></i> AYNA (All You Need for Agronomy) is a website particularly for the Indian Farmers to provide all information in one portal.</li>
-                        </ul>
-                        <h2><span>What does AYNA means?</span></h2>
-                        <ul class="bulleted-list">
-                            <li><i class="fa fa-arrow-circle-right"></i> AYNA - All You Need for Agronomy</li>
-                            <li><i class="fa fa-arrow-circle-right"></i> AYNA also stands for mirror in Hindi. Same as a mirror our website also reflects out all the info that's out there without misleading.</li>
-                        </ul>
-                        <h2><span>Reasons to Use AYNA</span></h2>
-                        <ul class="bulleted-list">
-                            <li><i class="fa fa-arrow-circle-right"></i> A farmer will be able to get all relevant information on specific subjects around his state.</li>
-                            <li><i class="fa fa-arrow-circle-right"></i> One Stop Solution for Farmers with most of the required Info available at one place.</li>
-                            <li><i class="fa fa-arrow-circle-right"></i> Consist of features like weather report, government schemes, seed price etc.</li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="thm-container">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <div class="sec-title">
+              <h2><span>What is AYNA</span></h2>
+              <ul class="bulleted-list">
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> AYNA (All You Need
+                  for Agronomy) is a website particularly for the Indian Farmers
+                  to provide all information in one portal.
+                </li>
+              </ul>
+              <h2><span>What does AYNA means?</span></h2>
+              <ul class="bulleted-list">
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> AYNA - All You Need
+                  for Agronomy
+                </li>
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> AYNA also stands for
+                  mirror in Hindi. Same as a mirror our website also reflects
+                  out all the info that's out there without misleading.
+                </li>
+              </ul>
+              <h2><span>Reasons to Use AYNA</span></h2>
+              <ul class="bulleted-list">
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> A farmer will be able
+                  to get all relevant information on specific subjects around
+                  his state.
+                </li>
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> One Stop Solution for
+                  Farmers with most of the required Info available at one place.
+                </li>
+                <li>
+                  <i class="fa fa-arrow-circle-right"></i> Consist of features
+                  like weather report, government schemes, seed price etc.
+                </li>
+              </ul>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="welcome-services home-one">
-        <div class="thm-container">
-            <div class="sec-title">
-                <h2><span>Features</span></h2>
-                <p>All the features that are provided by this website.</p>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'weather.jpg' %}" alt="weather">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Weather Report</h3>
-                                <p>Get all information needed on the weather of your current location or by searching for the location.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'seeds pic.jpg' %}" alt="seed">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Seed Price & Info</h3>
-                                <p>Realtime Seed Price along with all the Knowledge you need about different types of seeds</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'ind govt sch.jpg' %}" alt="Govt Schemes">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Goverment Schemes</h3>
-                                <p>Latest Government Schemes for maximizing the benefits and minimizing the loss.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'tech.jpg' %}" alt="Tech">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Technological Knowledge</h3>
-                                <p>The knowledge you need to enhance your crop production: Solar Panel, etc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'internet.jpg' %}" alt="Internet">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Low Internet Consumption</h3>
-                                <p>Even with poor internet connectivity, you can access this website.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="welcome-single-services">
-                        <div class="img-box">
-                            <img src="{% static 'images/welcome-services/7.jpg' %}" alt="Ui Ux">
-                        </div>
-                        <div class="text-box">
-                            <div class="content">
-                                <h3>Easy to Use</h3>
-                                <p>Simple visuals are used making it easy to understand.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="thm-container">
+        <div class="sec-title">
+          <h2><span>Features</span></h2>
+          <p>All the features that are provided by this website.</p>
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img src="{% static 'weather.jpg' %}" alt="weather" />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Weather Report</h3>
+                  <p>
+                    Get all information needed on the weather of your current
+                    location or by searching for the location.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img src="{% static 'seeds pic.jpg' %}" alt="seed" />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Seed Price & Info</h3>
+                  <p>
+                    Realtime Seed Price along with all the Knowledge you need
+                    about different types of seeds
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img src="{% static 'ind govt sch.jpg' %}" alt="Govt Schemes" />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Goverment Schemes</h3>
+                  <p>
+                    Latest Government Schemes for maximizing the benefits and
+                    minimizing the loss.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img src="{% static 'tech.jpg' %}" alt="Tech" />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Technological Knowledge</h3>
+                  <p>
+                    The knowledge you need to enhance your crop production:
+                    Solar Panel, etc.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img src="{% static 'internet.jpg' %}" alt="Internet" />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Low Internet Consumption</h3>
+                  <p>
+                    Even with poor internet connectivity, you can access this
+                    website.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="welcome-single-services">
+              <div class="img-box">
+                <img
+                  src="{% static 'images/welcome-services/7.jpg' %}"
+                  alt="Ui Ux"
+                />
+              </div>
+              <div class="text-box">
+                <div class="content">
+                  <h3>Easy to Use</h3>
+                  <p>Simple visuals are used making it easy to understand.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-
     <footer id="footer" class="sec-padding">
-        <div class="thm-container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 footer-widget">
-                    <div class="about-widget">
-                        <a href="index.html"><img style="height: 150px;" src="{% static 'AYNA NEW LOGO.png' %}" alt="logo" /></a>
-                        <p>All You Need for Agronomy</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 footer-widget">
-                    <div class="pl-30">
-                        <div class="title" style="color: #05f7c2;">
-                            <h2><span>"If the farmer is rich, then so is the nation."</span></h2>
-                            <br>
-                            <p><strong>- Amit Kalantri</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 footer-widget">
-                </div>
+      <div class="thm-container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 footer-widget">
+            <div class="about-widget">
+              <a href="index.html"
+                ><img
+                  style="height: 150px"
+                  src="{% static 'AYNA NEW LOGO.png' %}"
+                  alt="logo"
+              /></a>
+              <p>All You Need for Agronomy</p>
             </div>
+          </div>
+          <div class="col-md-4 col-sm-6 footer-widget">
+            <div class="pl-30">
+              <div class="title" style="color: #05f7c2">
+                <h2>
+                  <span>"If the farmer is rich, then so is the nation."</span>
+                </h2>
+                <br />
+                <p><strong>- Amit Kalantri</strong></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 footer-widget"></div>
         </div>
+      </div>
     </footer>
 
     <section class="bottom-bar">
-        <div class="thm-container clearfix">
-            <div class="pull-left">
-                <p>AYNA All rights reserved.</p>
-            </div>
-            <div class="pull-right">
-
-                <a href="#">Created By : <i>AYNA TEAM</i> </a>
-
-            </div>
+      <div class="thm-container clearfix">
+        <div class="pull-left">
+          <p>AYNA All rights reserved.</p>
         </div>
+        <div class="pull-right">
+          <a href="#">Created By : <i>AYNA TEAM</i> </a>
+        </div>
+      </div>
     </section>
-
 
     <!-- jQuery js -->
     <script src="{% static 'plugins/jquery/jquery-1.11.3.min.js' %}"></script>
@@ -529,6 +738,5 @@
 
     <!-- theme custom js  -->
     <script src="{% static 'js/main.js' %}"></script>
-</body>
-
+  </body>
 </html>
