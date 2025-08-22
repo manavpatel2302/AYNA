@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.core.wsgi import get_wsgi_application
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = "django-insecure-dnz)fp=*wev4-c)m#-s)$9pzdd+)4hd&9-z#1f2%tixxnjc9sr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -69,7 +70,9 @@ TEMPLATES = [
 ]
 
 # WSGI_APPLICATION = "myproject.wsgi.application"
-WSGI_APPLICATION = 'myproject.wsgi.app'  # Replace myproject with your Django project folder
+# WSGI_APPLICATION = 'myproject.wsgi.app'  # Replace myproject with your Django project folder
+
+app = get_wsgi_application()
 
 
 
