@@ -22,7 +22,8 @@ def save_to_google_sheets(name, email, message):
         # For now, we'll create a working solution using a public endpoint
         # Replace with actual Google Apps Script web app URL when available
         
-        web_app_url = "https://script.google.com/macros/s/AKfycbw1G8Y_Z9vTjmH4gR7xNm8zfqYd2yMxQA9pNsKjvLmH2cGQUMzz3vJ0xY8qF5tNhPmb/exec"
+        # Your actual Google Apps Script web app URL
+        web_app_url = "https://script.google.com/macros/s/AKfycbwmEc_RhYlIAnNL_6s9g3llTZOi3rZUqm1Jq2jCAJUIHe0aaTXdan7tyxzhcySoTWNn8A/exec"
         
         data = {
             'timestamp': timestamp,
