@@ -18,18 +18,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
-from django.http import HttpResponse
-from django.urls import path
-
-def index(request):
-    return HttpResponse("Hello from Django on Vercel!")
-
-urlpatterns = [
-    path('', index.html),
-    # ...other URLs...
-]
-
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("",include('myapp.urls'))
