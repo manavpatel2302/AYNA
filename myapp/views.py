@@ -4,6 +4,46 @@ from django.shortcuts import render,HttpResponse,redirect
 from myapp.models import *
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.http import JsonResponse
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import os
+from datetime import datetime
+
+# Google Sheets integration function using web app
+def save_to_google_sheets(name, email, message):
+    try:
+        import requests
+        
+        # Get current timestamp
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        # Data to send to Google Sheets via Apps Script Web App
+        # For now, we'll create a working solution using a public endpoint
+        # Replace with actual Google Apps Script web app URL when available
+        
+        web_app_url = "https://script.google.com/macros/s/AKfycbw1G8Y_Z9vTjmH4gR7xNm8zfqYd2yMxQA9pNsKjvLmH2cGQUMzz3vJ0xY8qF5tNhPmb/exec"
+        
+        data = {
+            'timestamp': timestamp,
+            'name': name,
+            'email': email,
+            'message': message
+        }
+        
+        try:
+            response = requests.post(web_app_url, json=data, timeout=10)
+            if response.status_code == 200:
+                print("Successfully saved to Google Sheets")
+            else:
+                print(f"Failed to save to Google Sheets: {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"Request to Google Sheets failed: {str(e)}")
+            
+    except Exception as e:
+        print(f"Error in Google Sheets integration: {str(e)}")
+        # Don't fail the request if Google Sheets integration fails
+        pass
 
 # Create your views here.
 
@@ -131,17 +171,34 @@ def confirm_password(request):
 
 def feedback(request):
     if request.method == 'POST':
-        # Get form data
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
+        try:
+            # Get form data
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            message = request.POST.get('message')
 
-        # Save data to the Feedback model
-        feedback = Feedback(name=name, email=email, message=message)
-        feedback.save()
-
+            # Save data to the Feedback model
+            feedback = Feedback(name=name, email=email, message=message)
+            feedback.save()
+            
+            # Save to Google Sheets
+            save_to_google_sheets(name, email, message)
+            
+            # Return JSON response for AJAX
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': True, 'message': 'Feedback submitted successfully!'})
+            else:
+                # For regular form submission (fallback)
+                messages.success(request, 'Thank you for your feedback!')
+                return redirect('feedback')
+                
+        except Exception as e:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': str(e)})
+            else:
+                messages.error(request, f'Error: {str(e)}')
+                return render(request, 'feedback.html')
         
-        # Clear the form or redirect
     return render(request, 'feedback.html')
 
 

@@ -83,6 +83,57 @@
     .subnav:hover .subnav-content {
         display: block;
     }
+    
+    /* Popup Styles */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .popup-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .popup-content h2 {
+        color: #05f7c2;
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+    
+    .popup-content p {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    
+    .close-btn {
+        background-color: #05f7c2;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    
+    .close-btn:hover {
+        background-color: #04d9a8;
+    }
 </style>
 
 <head>
@@ -171,7 +222,7 @@
             </div><br>
             <div class="row">
                 <div class="col-md-7 col-sm-6 col-xs-12 pull-left">
-                    <form action="{% url 'feedback' %}" method="POST" class="contact-form contact-page" autocomplete="off">
+                    <form id="feedback-form" action="{% url 'feedback' %}" method="POST" class="contact-form contact-page" autocomplete="off">
                         {% csrf_token %}
                         <p><input id="name" type="text" placeholder="Name" name="name" required></p>
                         <p><input id="email" type="email" placeholder="Email" name="email" required></p>
@@ -179,6 +230,14 @@
                     <button type="submit" class="thm-btn">Submit Now</button>
                     </form>
 
+                    <!-- Success Popup Modal -->
+                    <div id="success-popup" class="popup-overlay" style="display: none;">
+                        <div class="popup-content">
+                            <h2>Thank you for feedback !!</h2>
+                            <p>Your feedback has been submitted successfully.</p>
+                            <button onclick="closePopup()" class="close-btn">Close</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -267,11 +326,42 @@
 
     <!-- theme custom js  -->
     <script src="{% static 'js/main.js' %}"></script>
-
-
-
-
-
+    
+    <!-- Custom JavaScript for feedback form -->
+    <script>
+        function closePopup() {
+            document.getElementById('success-popup').style.display = 'none';
+            // Reset form after closing popup
+            document.getElementById('feedback-form').reset();
+        }
+        
+        $(document).ready(function() {
+            $('#feedback-form').on('submit', function(e) {
+                e.preventDefault(); // Prevent default form submission
+                
+                var formData = $(this).serialize();
+                
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#success-popup').show();
+                        } else {
+                            alert('Error: ' + (response.error || 'Failed to submit feedback'));
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while submitting your feedback. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 
